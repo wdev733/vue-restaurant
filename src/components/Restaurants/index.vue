@@ -15,6 +15,8 @@
                 v-bind:getAllRestaurants="getAllRestaurants"
             ></ChangePage>
 
+            <!-- <ChangePage></ChangePage> -->
+
             <el-row>
                 <template>
                     <el-table

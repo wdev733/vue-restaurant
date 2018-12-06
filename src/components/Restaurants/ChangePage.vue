@@ -24,20 +24,20 @@
             </el-button>
             
             <el-button  icon="el-icon-d-arrow-left" 
-                        v-on:click="changePage(page, true)"
+                        v-on:click="firstPage()"
                         circle>
             </el-button>
             <el-button  icon="el-icon-arrow-left" 
-                        v-on:click="changePage(--page)"
+                        v-on:click="decrementPage()"
                         circle>
             </el-button>
             <p>{{page}}</p>
             <el-button  icon="el-icon-arrow-right" 
-                        v-on:click="changePage(++page)"
+                        v-on:click="incrementPage()"
                         circle>
             </el-button>
             <el-button  icon="el-icon-d-arrow-right" 
-                        v-on:click="changePage(page, false, true)"
+                        v-on:click="lastPage()"
                         circle>
             </el-button>
         </el-row>
@@ -45,40 +45,40 @@
 </template>
 
 <script>
-import { mapState, mapGetters, } from 'vuex'
+import { mapState, mapGetters, mapActions, } from 'vuex'
 
 export default {
     name: 'ChangePage',
     computed: {
         ...mapState({
             count: state => state.restaurants.count,
-            page: state => state.restaurants.table.page,
             pageSize: state => state.restaurants.table.pageSize,
+            page: state => state.restaurants.table.page,
         }),
     },
     props: {
         getAllRestaurants: Function,
     },
     methods: {
-        changePageSize(payload) {
-            this.$store.dispatch('restaurants/setPageSize', payload)
-            this.getAllRestaurants(1, this.pageSize);
+        incrementPage() {
+            this.$store.dispatch('restaurants/incrementPage');
+            this.getAllRestaurants(this.page, this.pageSize);
         },
-        changePage(page, firstPage, lastPage){
-            const totalPages = Math.round(this.count / this.pageSize);
-            this.$store.dispatch('restaurants/setPage', page < 1 ? 1 : page)
-
-            if (page > totalPages) {
-                this.$store.dispatch('restaurants/setPage', totalPages)
-                this.getAllRestaurants(this.page);
-            }
-            if (firstPage) {
-                this.getAllRestaurants(1);
-            }
-            if (lastPage) {
-                this.getAllRestaurants(totalPages);
-            }
-            this.getAllRestaurants(this.page);
+        decrementPage() {
+            this.$store.dispatch('restaurants/decrementPage');
+            this.getAllRestaurants(this.page, this.pageSize);
+        },
+        firstPage() {
+            this.$store.dispatch('restaurants/firstPage');
+            this.getAllRestaurants(this.page, this.pageSize);
+        },
+        lastPage() {
+            this.$store.dispatch('restaurants/lastPage');
+            this.getAllRestaurants(this.page, this.pageSize);
+        },
+        changePageSize(payload) {
+            this.$store.dispatch('restaurants/setPageSize', payload);
+            this.getAllRestaurants(1, this.pageSize);
         },
         resfreshRestaurants(){
             console.log("resfreshRestaurants !!!")
