@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import FindRestaurant from './FindRestaurant.vue';
 import ChangePage from './ChangePage.vue';
 
@@ -91,6 +92,7 @@ export default {
     mounted() {
         this.page = 1;
         this.getRestaurantsFromServer();
+        this.getAllRestaurants();
     },
     methods: {
         setSeachRestaurant(value) {
@@ -107,6 +109,9 @@ export default {
         },
         setPageSize(value) {
             this.pageSize = value;
+        },
+        getAllRestaurants() {
+            this.$store.dispatch('restaurants/getAll')
         },
         async getRestaurantsFromServer(page = this.page, pageSize = this.pageSize) {
             this.page = page < 1 ? 1 : page;
