@@ -2,7 +2,7 @@
     <div id="changePage">
         <el-row>
             <el-col id="countRestaurant" :span="12">
-                <label>Nombre de restaurants : {{countRestaurant}}</label>
+                <label>Nombre de restaurants : {{count}}</label>
             </el-col>
 
             <el-col id="changePageSize" :span="12">
@@ -45,55 +45,44 @@
 </template>
 
 <script>
+import { mapState, mapGetters, } from 'vuex'
+
 export default {
     name: 'ChangePage',
+    computed: {
+        ...mapState({
+            count: state => state.restaurants.count,
+            page: state => state.restaurants.table.page,
+            pageSize: state => state.restaurants.table.pageSize,
+        }),
+    },
     props: {
-        pageSize: Number,
-        page: Number,
-        countRestaurant: Number,
-        getRestaurantsFromServer: Function,
+        getAllRestaurants: Function,
     },
     methods: {
-        changePageSize(value) {
-            this.$emit('pageSize', value);
-            this.getRestaurantsFromServer(1, value);
+        changePageSize(payload) {
+            this.$store.dispatch('restaurants/setPageSize', payload)
+            this.getAllRestaurants(1, this.pageSize);
         },
         changePage(page, firstPage, lastPage){
-            const totalPages = Math.round(this.countRestaurant / this.pageSize);
-            this.$emit('page', page < 1 ? 1 : page);
+            const totalPages = Math.round(this.count / this.pageSize);
+            this.$store.dispatch('restaurants/setPage', page < 1 ? 1 : page)
 
             if (page > totalPages) {
-                this.$emit('page', totalPages);
-                this.getRestaurantsFromServer(totalPages);
+                this.$store.dispatch('restaurants/setPage', totalPages)
+                this.getAllRestaurants(this.page);
             }
             if (firstPage) {
-                this.getRestaurantsFromServer(1);
+                this.getAllRestaurants(1);
             }
             if (lastPage) {
-                this.getRestaurantsFromServer(totalPages);
+                this.getAllRestaurants(totalPages);
             }
-            this.getRestaurantsFromServer(page);
+            this.getAllRestaurants(this.page);
         },
-        resfreshRestaurants() {
-            try {
-                this.$emit('seachRestaurant', '');
-                this.getRestaurantsFromServer(1, 10);
-                this.$emit('page', 1);
-                this.$emit('pageSize', 10);
-
-                this.$notify({
-                    title: 'Refresh',
-                    message: "Tableau rafraichi !",
-                    type: 'warning'
-                });
-            } catch(err) {
-                this.$notify.error({
-                    title: 'Erreur',
-                    message: "Echec du rafraichissement du tableau !",
-                });
-                console.error('[ERROR] resfreshRestaurants : ', err)
-            }
-        },
+        resfreshRestaurants(){
+            console.log("resfreshRestaurants !!!")
+        }
     },
 }
 </script>

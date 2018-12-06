@@ -11,8 +11,9 @@
                 </div>
             </el-row>
 
-            <!-- <ChangePage
-            ></ChangePage> -->
+            <ChangePage
+                v-bind:getAllRestaurants="getAllRestaurants"
+            ></ChangePage>
 
             <el-row>
                 <template>
@@ -63,6 +64,7 @@ export default {
     name: 'Restaurants',
     computed: {
         ...mapState({
+            count: state => state.restaurants.count,
             restaurants: state => state.restaurants.all,
             page: state => state.restaurants.table.page,
             pageSize: state => state.restaurants.table.pageSize,
