@@ -1,9 +1,9 @@
 import restaurants from '../../api/restaurants';
 
 const actions = {
-    async getAll({ commit }) {
-        const { data, count } = await restaurants.getAll();
-        commit('setRestaurants', { data, count });
+    async getAll({ commit }, page, pageSize, restaurantName) {        
+        const { data, count } = await restaurants.getAll(page, pageSize, restaurantName);
+        commit('setRestaurants', {data, count});
     }
 }
 
