@@ -6,6 +6,7 @@ const state = {
     count: 0,
     all: [],
     selected: null,
+    restaurantName: null,
 }
 
 export default state;

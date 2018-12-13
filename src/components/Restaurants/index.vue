@@ -1,8 +1,7 @@
 <template>
 	<div id="restaurants">
         <el-row>
-            <!-- <FindRestaurant
-            ></FindRestaurant>-->
+            <FindRestaurant></FindRestaurant>
 
             <el-row>
                 <div class="item-container">
@@ -11,11 +10,7 @@
                 </div>
             </el-row>
 
-            <ChangePage
-                v-bind:getAllRestaurants="getAllRestaurants"
-            ></ChangePage>
-
-            <!-- <ChangePage></ChangePage> -->
+            <ChangePage></ChangePage>
 
             <el-row>
                 <template>
@@ -58,7 +53,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import FindRestaurant from './FindRestaurant.vue';
 import ChangePage from './ChangePage.vue';
 
@@ -78,12 +73,12 @@ export default {
     },
     mounted() {
         const { page, pageSize } = this;
-        this.getAllRestaurants(page, pageSize);
+        this.getAllRestaurants({page, pageSize});
     },
     methods: {
-        getAllRestaurants(page, pageSize, restaurantName) {
-            this.$store.dispatch('restaurants/getAll', {page, pageSize, restaurantName})
-        },
+        ...mapActions({
+            getAllRestaurants: 'restaurants/getAll',
+        }),
     }
 }
 </script>

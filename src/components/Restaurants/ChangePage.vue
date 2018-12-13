@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions, } from 'vuex'
+import { mapState, mapActions, } from 'vuex'
 
 export default {
     name: 'ChangePage',
@@ -56,30 +56,14 @@ export default {
             page: state => state.restaurants.table.page,
         }),
     },
-    props: {
-        getAllRestaurants: Function,
-    },
     methods: {
-        incrementPage() {
-            this.$store.dispatch('restaurants/incrementPage');
-            this.getAllRestaurants(this.page, this.pageSize);
-        },
-        decrementPage() {
-            this.$store.dispatch('restaurants/decrementPage');
-            this.getAllRestaurants(this.page, this.pageSize);
-        },
-        firstPage() {
-            this.$store.dispatch('restaurants/firstPage');
-            this.getAllRestaurants(this.page, this.pageSize);
-        },
-        lastPage() {
-            this.$store.dispatch('restaurants/lastPage');
-            this.getAllRestaurants(this.page, this.pageSize);
-        },
-        changePageSize(payload) {
-            this.$store.dispatch('restaurants/setPageSize', payload);
-            this.getAllRestaurants(1, this.pageSize);
-        },
+        ...mapActions({
+            incrementPage: 'restaurants/incrementPage',
+            decrementPage: 'restaurants/decrementPage',
+            firstPage: 'restaurants/firstPage',
+            lastPage: 'restaurants/lastPage',
+            changePageSize: 'restaurants/setPageSize',
+        }),
         resfreshRestaurants(){
             console.log("resfreshRestaurants !!!")
         }

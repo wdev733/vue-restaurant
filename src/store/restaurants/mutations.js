@@ -7,6 +7,7 @@ const mutations = {
     incrementPage: state => state.table.page++,
     decrementPage: state => state.table.page--,
     setPageSize: (state, payload) => state.table.pageSize = payload,
+    setRestaurantName: (state, payload) => state.restaurantName = payload,
 }
 
 export default mutations;
