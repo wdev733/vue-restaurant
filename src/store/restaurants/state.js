@@ -5,8 +5,12 @@ const state = {
     },
     count: 0,
     all: [],
-    selected: null,
+    selected: {
+        name: '',
+        cuisine: '',
+    },
     restaurantName: null,
+    openModal: false,
 }
 
 export default state;

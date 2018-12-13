@@ -31,7 +31,7 @@
                                 fixed="right"
                                 label="Modifier">
                                 <template slot-scope="scope">
-                                    <el-button  @click="getRestaurantByIdFromServer(scope.row._id)"
+                                    <el-button  @click="onRestaurantSelected(scope.row._id)"
                                                 icon="el-icon-circle-check">
                                     </el-button>
                                 </template>
@@ -48,6 +48,7 @@
                     </el-table>
                 </template>
             </el-row>
+            <RestaurantModal></RestaurantModal>
         </el-row>
 	</div>
 </template>
@@ -56,6 +57,7 @@
 import { mapState, mapActions } from 'vuex'
 import FindRestaurant from './FindRestaurant.vue';
 import ChangePage from './ChangePage.vue';
+import RestaurantModal from './RestaurantModal.vue';
 
 export default {
     name: 'Restaurants',
@@ -63,6 +65,7 @@ export default {
         ...mapState({
             count: state => state.restaurants.count,
             restaurants: state => state.restaurants.all,
+            restaurant: state => state.restaurants.selected,
             page: state => state.restaurants.table.page,
             pageSize: state => state.restaurants.table.pageSize,
         }),
@@ -70,6 +73,7 @@ export default {
     components: {
         FindRestaurant,
         ChangePage,
+        RestaurantModal,
     },
     mounted() {
         const { page, pageSize } = this;
@@ -78,7 +82,13 @@ export default {
     methods: {
         ...mapActions({
             getAllRestaurants: 'restaurants/getAll',
+            getRestaurantById: 'restaurants/getById',
+            toggleOpenModal: 'restaurants/toggleOpenModal',
         }),
+        async onRestaurantSelected (id) {
+            await this.getRestaurantById(id);
+            !!this.restaurant && this.toggleOpenModal();
+        },
     }
 }
 </script>

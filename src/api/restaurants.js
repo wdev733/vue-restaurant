@@ -14,6 +14,15 @@ const restaurants = {
             console.error('[ERROR] getAll : ', err);
             return err;
         }
+    },
+    async getById(id) {
+        try {
+            const response = await fetch(`${url}/restaurants/${id}`);
+            return await response.json();
+        } catch(err) {
+            console.error('[ERROR] getById : ', err);
+            return err;
+        }
     }
 }
 

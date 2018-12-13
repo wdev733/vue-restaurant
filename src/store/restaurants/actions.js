@@ -5,6 +5,10 @@ const actions = {
         const { data, count } = await restaurants.getAll(page, pageSize, restaurantName);
         commit('setRestaurants', {data, count});
     },
+    async getById({ commit }, id) {      
+        const { restaurant } = await restaurants.getById(id);
+        commit('setRestaurant', restaurant);
+    },
     setPage: ({ commit }, payload) => commit('setPage', payload),
     incrementPage: ({ commit, dispatch, state }) => {
         const { count, restaurantName, table: { pageSize, page } } = state;
@@ -47,6 +51,7 @@ const actions = {
         const { restaurantName, table: { page, pageSize } } = state;
         dispatch('getAll', {page, pageSize, restaurantName});
     },
+    toggleOpenModal: ({ commit }) => commit('toggleOpenModal'),
 }
 
 export default actions;

@@ -1,11 +1,11 @@
 <template>
     <div id="changePage">
-        <el-row>
-            <el-col id="countRestaurant" :span="12">
+        <el-row :span="8">
+            <el-col id="countRestaurant">
                 <label>Nombre de restaurants : {{count}}</label>
             </el-col>
 
-            <el-col id="changePageSize" :span="12">
+            <el-col id="changePageSize">
                 <label for="changePagination">Nombre de restaurants par page : {{pageSize}}</label>
                 <el-slider
                     type="range" 
@@ -16,7 +16,7 @@
             </el-col>
         </el-row>
 
-        <el-row id="changePage" :span="12">
+        <el-row id="changePage" :span="24">
             <el-button  round 
                         native-type="button"
                         v-on:click="refreshRestaurants">
