@@ -40,6 +40,13 @@ const actions = {
         dispatch('getAll', {page, pageSize, restaurantName});
     },
     setRestaurantName: ({ commit }, payload) => commit('setRestaurantName', payload),
+    refreshRestaurants: ({ commit, dispatch, state }, payload) => {
+        commit('setPageSize', 10);
+        commit('setPage', 1);
+        commit('setRestaurantName', null);
+        const { restaurantName, table: { page, pageSize } } = state;
+        dispatch('getAll', {page, pageSize, restaurantName});
+    },
 }
 
 export default actions;

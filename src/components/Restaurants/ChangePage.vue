@@ -19,7 +19,7 @@
         <el-row id="changePage" :span="12">
             <el-button  round 
                         native-type="button"
-                        v-on:click="resfreshRestaurants">
+                        v-on:click="refreshRestaurants">
                         Refresh
             </el-button>
             
@@ -63,10 +63,8 @@ export default {
             firstPage: 'restaurants/firstPage',
             lastPage: 'restaurants/lastPage',
             changePageSize: 'restaurants/setPageSize',
+            refreshRestaurants: 'restaurants/refreshRestaurants',
         }),
-        resfreshRestaurants(){
-            console.log("resfreshRestaurants !!!")
-        }
     },
 }
 </script>
