@@ -1,7 +1,7 @@
 import VueRouter from 'vue-router'
 
-import Restaurants from './components/Restaurants'
-import HelloWorld from './components/HelloWorld.vue'
+import Restaurants from './containers/Restaurants'
+import HelloWorld from './containers/HelloWorld.vue'
 
 const routes = [
     {path:'/', component: Restaurants},

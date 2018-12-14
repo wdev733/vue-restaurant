@@ -36,11 +36,13 @@
                     </el-col>
                 </form>
             </el-row>
+            <MapTool></MapTool>
     </el-dialog>
 </template>
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
+import MapTool from '../../components/MapTool.vue';
 
 export default {
     name: 'RestaurantModal',
@@ -52,13 +54,16 @@ export default {
             restaurant: 'restaurants/restaurantSelected',
         }),
     },
+    components: { 
+        MapTool
+    },
     methods: {
         ...mapActions({
             toggleOpenModal: 'restaurants/toggleOpenModal',
         }),
         updateRestaurant() {
             return
-        }
+        },
     }
 }
 </script>

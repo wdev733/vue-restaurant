@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import './plugins/element.js'
+import './plugins/element'
+import './plugins/mapbox'
 
 Vue.config.productionTip = false
 

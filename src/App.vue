@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Restaurants from './components/Restaurants'
+import Restaurants from './containers/Restaurants'
 
 export default {
   name: 'app',
