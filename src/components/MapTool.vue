@@ -7,10 +7,12 @@
         :zoom="zoom">
         <mgl-marker :coordinates="coordinates" color="blue"></mgl-marker>
     </mgl-map>
+    
 </template>
 
 <script>
 import { MglMap, MglMarker } from 'vue-mapbox'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -20,9 +22,13 @@ export default {
     data: () => ({
         accessToken: 'pk.eyJ1IjoicmxlbWJvIiwiYSI6ImNqcG9kYmpkdjA3OXAzeHJ0YXpyY3F3amEifQ.bRtN1Fg_KAVXnhRspshrpA',
         mapStyle: 'mapbox://styles/mapbox/streets-v10',
-        coordinates: [-73.7032601, 40.7386417],
         zoom: 13
-    })
+    }),
+    computed: {
+        ...mapGetters({
+            coordinates: 'restaurants/coordRestaurantSelected',
+        }),
+    },
 }
 </script>
 

@@ -8,6 +8,12 @@ const state = {
     selected: {
         name: '',
         cuisine: '',
+        address: {
+            coord: [],
+            street: '',
+            zipcode: '',
+            building: '',
+        }
     },
     restaurantName: null,
     openModal: false,
