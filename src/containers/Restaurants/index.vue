@@ -97,6 +97,7 @@ export default {
             getRestaurantById: 'restaurants/getById',
             toggleOpenDetailsModal: 'restaurants/toggleOpenDetailsModal',
             toggleOpenUpdateModal: 'restaurants/toggleOpenUpdateModal',
+            getImageCurrentRestaurant: 'restaurants/getImageCurrentRestaurant',
         }),
         async onUpdatedRestaurantSelected (id) {
             await this.getRestaurantById(id);
@@ -104,7 +105,10 @@ export default {
         },
         async onDetailsRestaurantSelected (id) {
             await this.getRestaurantById(id);
-            !!this.restaurant && this.toggleOpenDetailsModal();
+            if(!!this.restaurant) {
+                this.toggleOpenDetailsModal();
+                this.getImageCurrentRestaurant(this.restaurant.name);
+            }
         },
     }
 }

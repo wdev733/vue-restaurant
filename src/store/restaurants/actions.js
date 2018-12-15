@@ -11,11 +11,9 @@ const actions = {
         commit('setRestaurant', restaurant);
     },
     async getImageCurrentRestaurant({ commit }, name) {
-        console.log('getImageCurrentRestaurant / name : ', name);
-        const { data: {result: { items } } } = await qwant.image(name);
-        const image = items.find(item[0].media);
-        console.log('getImageCurrentRestaurant / image : ', image);
-        commit('setImageCurrentRestaurant', image);
+        const { data: { result: { items } } } = await qwant.image(name);
+        const { media } = items.find(item => item);
+        commit('setImageCurrentRestaurant', media);
     },
     setPage: ({ commit }, payload) => commit('setPage', payload),
     incrementPage: ({ commit, dispatch, state }) => {

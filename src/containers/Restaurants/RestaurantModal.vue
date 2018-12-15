@@ -5,6 +5,7 @@
         :before-close="toggleOpenModal"
         width="90%">
             <el-row id="detailsRestaurant">
+                <img id="imageRestaurant" :src="image"/>
                 <ul>
                     <li><b>Cuisine : </b>{{restaurant.cuisine}}</li>
                     <li>
@@ -31,14 +32,11 @@ export default {
     computed: {
         ...mapState({
             openModal: state => state.restaurants.modals.openDetailsModal,
+            image: state => state.restaurants.imageCurrentRestaurant,
         }),
         ...mapGetters({
             restaurant: 'restaurants/restaurantSelected',
         }),
-    },
-    mounted() {
-        //this.getImageCurrentRestaurant(this.restaurant.name);
-        this.getImageCurrentRestaurant('Dj Reynolds Pub And Restaurant');
     },
     components: { 
         MapTool
@@ -46,8 +44,14 @@ export default {
     methods: {
         ...mapActions({
             toggleOpenModal: 'restaurants/toggleOpenDetailsModal',
-            getImageCurrentRestaurant: 'restaurants/getImageCurrentRestaurant',
         }),
     }
 }
 </script>
+
+<style>
+#imageRestaurant {
+    max-width: 400px;
+    max-height: 400px;
+}
+</style>
