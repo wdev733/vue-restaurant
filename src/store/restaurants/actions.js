@@ -44,14 +44,15 @@ const actions = {
         dispatch('getAll', {page, pageSize, restaurantName});
     },
     setRestaurantName: ({ commit }, payload) => commit('setRestaurantName', payload),
-    refreshRestaurants: ({ commit, dispatch, state }, payload) => {
+    refreshRestaurants: ({ commit, dispatch, state }) => {
         commit('setPageSize', 10);
         commit('setPage', 1);
         commit('setRestaurantName', null);
         const { restaurantName, table: { page, pageSize } } = state;
         dispatch('getAll', {page, pageSize, restaurantName});
     },
-    toggleOpenModal: ({ commit }) => commit('toggleOpenModal'),
+    toggleOpenDetailsModal: ({ commit }) => commit('toggleOpenDetailsModal'),
+    toggleOpenUpdateModal: ({ commit }) => commit('toggleOpenUpdateModal'),
 }
 
 export default actions;

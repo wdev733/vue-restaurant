@@ -12,13 +12,8 @@
 </template>
 
 <script>
-import Restaurants from './containers/Restaurants'
-
 export default {
   name: 'app',
-  components: {
-    Restaurants
-  }
 }
 </script>
 

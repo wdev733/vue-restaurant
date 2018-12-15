@@ -29,9 +29,18 @@
                             </el-table-column>
                             <el-table-column
                                 fixed="right"
+                                label="Détails">
+                                <template slot-scope="scope">
+                                    <el-button  @click="onDetailsRestaurantSelected(scope.row._id)"
+                                                icon="el-icon-info">
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                fixed="right"
                                 label="Modifier">
                                 <template slot-scope="scope">
-                                    <el-button  @click="onRestaurantSelected(scope.row._id)"
+                                    <el-button  @click="onUpdatedRestaurantSelected(scope.row._id)"
                                                 icon="el-icon-circle-check">
                                     </el-button>
                                 </template>
@@ -48,6 +57,7 @@
                     </el-table>
                 </template>
             </el-row>
+            <UpdateRestaurantModal></UpdateRestaurantModal>
             <RestaurantModal></RestaurantModal>
         </el-row>
 	</div>
@@ -55,9 +65,10 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import FindRestaurant from './FindRestaurant.vue';
-import ChangePage from './ChangePage.vue';
-import RestaurantModal from './RestaurantModal.vue';
+import FindRestaurant from './FindRestaurant';
+import ChangePage from './ChangePage';
+import UpdateRestaurantModal from './UpdateRestaurantModal';
+import RestaurantModal from './RestaurantModal';
 
 export default {
     name: 'Restaurants',
@@ -73,6 +84,7 @@ export default {
     components: {
         FindRestaurant,
         ChangePage,
+        UpdateRestaurantModal,
         RestaurantModal,
     },
     mounted() {
@@ -83,11 +95,16 @@ export default {
         ...mapActions({
             getAllRestaurants: 'restaurants/getAll',
             getRestaurantById: 'restaurants/getById',
-            toggleOpenModal: 'restaurants/toggleOpenModal',
+            toggleOpenDetailsModal: 'restaurants/toggleOpenDetailsModal',
+            toggleOpenUpdateModal: 'restaurants/toggleOpenUpdateModal',
         }),
-        async onRestaurantSelected (id) {
+        async onUpdatedRestaurantSelected (id) {
             await this.getRestaurantById(id);
-            !!this.restaurant && this.toggleOpenModal();
+            !!this.restaurant && this.toggleOpenUpdateModal();
+        },
+        async onDetailsRestaurantSelected (id) {
+            await this.getRestaurantById(id);
+            !!this.restaurant && this.toggleOpenDetailsModal();
         },
     }
 }

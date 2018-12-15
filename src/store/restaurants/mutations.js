@@ -9,7 +9,8 @@ const mutations = {
     decrementPage: state => state.table.page--,
     setPageSize: (state, payload) => state.table.pageSize = payload,
     setRestaurantName: (state, payload) => state.restaurantName = payload,
-    toggleOpenModal: state => state.openModal = !state.openModal,
+    toggleOpenDetailsModal: state => state.modals.openDetailsModal = !state.modals.openDetailsModal,
+    toggleOpenUpdateModal: state => state.modals.openUpdateModal = !state.modals.openUpdateModal,
 }
 
 export default mutations;

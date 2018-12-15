@@ -16,7 +16,10 @@ const state = {
         }
     },
     restaurantName: null,
-    openModal: false,
+    modals: {
+        openDetailsModal: false,
+        openUpdateModal: false,
+    }
 }
 
 export default state;
