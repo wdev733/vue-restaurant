@@ -2,8 +2,7 @@
     <el-menu 
         router
         class="el-menu-demo" 
-        mode="horizontal"
-        @select="handleSelect">
+        mode="horizontal">
         <el-menu-item index="/">Accueil</el-menu-item>
         <el-menu-item index="/restaurants">Restaurants</el-menu-item>
         <el-menu-item index="4">Ajouter un restaurant</el-menu-item>
@@ -13,11 +12,5 @@
 </template>
 
 <script>
-export default {
-    methods: {
-        handleSelect() {
-            return
-        }
-    }
-}
+export default {}
 </script>
