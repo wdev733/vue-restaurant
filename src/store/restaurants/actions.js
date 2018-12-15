@@ -1,3 +1,5 @@
+import initialState from './state';
+
 import restaurants from '../../api/restaurants';
 import qwant from '../../api/qwant';
 
@@ -57,8 +59,20 @@ const actions = {
         const { restaurantName, table: { page, pageSize } } = state;
         dispatch('getAll', {page, pageSize, restaurantName});
     },
-    toggleOpenDetailsModal: ({ commit }) => commit('toggleOpenDetailsModal'),
-    toggleOpenUpdateModal: ({ commit }) => commit('toggleOpenUpdateModal'),
+    clearRestaurantSelected: ({ commit }) => {
+        commit('setRestaurant', initialState.selected);
+        commit('setImageCurrentRestaurant', null);
+    },
+    toggleOpenDetailsModal: ({ commit, dispatch, state }) => {
+        const { modals: { openDetailsModal } } = state;
+        commit('toggleOpenDetailsModal');
+        !openDetailsModal && dispatch('clearRestaurantSelected');
+    },
+    toggleOpenUpdateModal: ({ commit, dispatch, state }) => {
+        const { modals: { openUpdateModal } } = state;
+        commit('toggleOpenUpdateModal');
+        !openUpdateModal && dispatch('clearRestaurantSelected');
+    },
 }
 
 export default actions;
