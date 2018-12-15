@@ -1,4 +1,5 @@
 import restaurants from '../../api/restaurants';
+import qwant from '../../api/qwant';
 
 const actions = {
     async getAll({ commit }, page, pageSize, restaurantName) {        
@@ -8,6 +9,13 @@ const actions = {
     async getById({ commit }, id) {      
         const { restaurant } = await restaurants.getById(id);
         commit('setRestaurant', restaurant);
+    },
+    async getImageCurrentRestaurant({ commit }, name) {
+        console.log('getImageCurrentRestaurant / name : ', name);
+        const { data: {result: { items } } } = await qwant.image(name);
+        const image = items.find(item[0].media);
+        console.log('getImageCurrentRestaurant / image : ', image);
+        commit('setImageCurrentRestaurant', image);
     },
     setPage: ({ commit }, payload) => commit('setPage', payload),
     incrementPage: ({ commit, dispatch, state }) => {

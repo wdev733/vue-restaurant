@@ -1,38 +1,22 @@
 <template>
     <el-dialog
-        title="Information sur le restaurant"
+        :title="restaurant.name"
         :visible.sync="openModal"
         :before-close="toggleOpenModal"
         width="90%">
             <el-row id="detailsRestaurant">
-                <el-col :span="8">
-                    <label>
-                        Nom : 
-                        <el-input 
-                            type="text" 
-                            name="nom" 
-                            required
-                            v-model="restaurant.name" />
-                    </label>
-                </el-col>
-                <el-col :span="8">
-                    <label>
-                        Cuisine :
-                        <el-input 
-                            type="text" 
-                            name="cuisine" 
-                            required
-                            v-model="restaurant.cuisine" />
-                    </label>
-                </el-col>
-                <el-col :span="4">
-                    <el-button  icon="el-icon-edit" 
-                                round 
-                                type="primary"
-                                native-type="submit">
-                                Modifier
-                    </el-button>
-                </el-col>
+                <ul>
+                    <li><b>Cuisine : </b>{{restaurant.cuisine}}</li>
+                    <li>
+                        <b>Adresse : </b>
+                        <ul>
+                            <li><b>Batiment : </b>{{restaurant.address.building}}</li>
+                            <li><b>Rue : </b>{{restaurant.address.street}}</li>
+                            <li><b>Code postale : </b>{{restaurant.address.zipcode}}</li>
+                            <li><b>Quartier : </b>{{restaurant.borough}}</li>
+                        </ul>
+                    </li>
+                </ul>
             </el-row>
             <MapTool></MapTool>
     </el-dialog>
@@ -52,12 +36,17 @@ export default {
             restaurant: 'restaurants/restaurantSelected',
         }),
     },
+    mounted() {
+        //this.getImageCurrentRestaurant(this.restaurant.name);
+        this.getImageCurrentRestaurant('Dj Reynolds Pub And Restaurant');
+    },
     components: { 
         MapTool
     },
     methods: {
         ...mapActions({
             toggleOpenModal: 'restaurants/toggleOpenDetailsModal',
+            getImageCurrentRestaurant: 'restaurants/getImageCurrentRestaurant',
         }),
     }
 }

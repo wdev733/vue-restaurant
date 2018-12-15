@@ -11,6 +11,7 @@ const mutations = {
     setRestaurantName: (state, payload) => state.restaurantName = payload,
     toggleOpenDetailsModal: state => state.modals.openDetailsModal = !state.modals.openDetailsModal,
     toggleOpenUpdateModal: state => state.modals.openUpdateModal = !state.modals.openUpdateModal,
+    setImageCurrentRestaurant: state => state.imageCurrentRestaurant = payload,
 }
 
 export default mutations;

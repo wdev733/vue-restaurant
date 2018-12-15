@@ -19,7 +19,8 @@ const state = {
     modals: {
         openDetailsModal: false,
         openUpdateModal: false,
-    }
+    },
+    imageCurrentRestaurant: null,
 }
 
 export default state;
