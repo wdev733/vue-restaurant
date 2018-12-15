@@ -1,7 +1,6 @@
 <template>
     <el-menu 
-        router="true"
-        :default-active="activeIndex" 
+        router
         class="el-menu-demo" 
         mode="horizontal"
         @select="handleSelect">
