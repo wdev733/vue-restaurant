@@ -17,6 +17,24 @@ const actions = {
         const { media } = items.find(item => item);
         commit('setImageCurrentRestaurant', media);
     },
+    async create({ dispatch, state }, formData) {
+        const { restaurantName, table: { pageSize, page } } = state;
+        const response = await restaurants.create(formData);
+        dispatch('getAll', {page, pageSize, restaurantName});
+        return response;
+    },
+    async update({ dispatch, state }, id, formData) {
+        const { restaurantName, table: { pageSize, page } } = state;
+        const response = await restaurants.update(id, formData);
+        dispatch('getAll', {page, pageSize, restaurantName});
+        return response;
+    },
+    async delete({ dispatch, state }, id) {
+        const { restaurantName, table: { pageSize, page } } = state;
+        const response = await restaurants.delete(id);
+        dispatch('getAll', {page, pageSize, restaurantName});
+        return response;
+    },
     setPage: ({ commit }, payload) => commit('setPage', payload),
     incrementPage: ({ commit, dispatch, state }) => {
         const { count, restaurantName, table: { pageSize, page } } = state;

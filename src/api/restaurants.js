@@ -23,6 +23,41 @@ const restaurants = {
             console.error('[ERROR] getById : ', err);
             return err;
         }
+    },
+    async create(formData) {
+        try {
+            const response = await fetch(`${url}/restaurants`, {
+                method: 'POST',
+                body: formData
+            });
+            return await response.json();
+        } catch(err) {
+            console.error('[ERROR] create : ', err);
+            return err;
+        }
+    },
+    async update(id, formData) {
+        try {
+            const response = await fetch(`${url}/restaurants/${id}`, {
+                method: 'PUT',
+                body: formData
+            });
+            return await response.json();
+        } catch(err) {
+            console.error('[ERROR] update : ', err);
+            return err;
+        }
+    },
+    async delete(id) {
+        try {
+            const response = await fetch(`${url}/restaurants/${id}`, {
+                method: 'DELETE',
+            });
+            return await response.json();
+        } catch(err) {
+            console.error('[ERROR] delete : ', err);
+            return err;
+        }
     }
 }
 

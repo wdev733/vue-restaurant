@@ -98,6 +98,7 @@ export default {
             toggleOpenDetailsModal: 'restaurants/toggleOpenDetailsModal',
             toggleOpenUpdateModal: 'restaurants/toggleOpenUpdateModal',
             getImageCurrentRestaurant: 'restaurants/getImageCurrentRestaurant',
+            delete: 'restaurants/delete',
         }),
         async onUpdatedRestaurantSelected (id) {
             await this.getRestaurantById(id);
@@ -108,6 +109,22 @@ export default {
             if(!this.restaurant) {
                 this.toggleOpenDetailsModal();
                 this.getImageCurrentRestaurant(this.restaurant.name);
+            }
+        },
+        async deleteRestaurant(id) {
+            try {
+                const { succes } = await this.delete(id);
+                succes && this.$notify({
+                    title: 'Succés',
+                    message: 'Restaurant supprimé !',
+                    type: 'success'
+                });
+            } catch (error) {
+                this.$notify.error({
+                    title: 'Erreur',
+                    message: "Echec de la suppréssion du restaurant !",
+                });
+                console.error('[ERROR] deleteRestaurant : ', error);
             }
         },
     }
