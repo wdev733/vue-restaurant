@@ -1,7 +1,7 @@
 <template>
     <el-row id="findRestaurants" :gutter="20">
         <div class="item-container">
-            <i class="item el-icon-question"></i>
+            <!-- <i class="item el-icon-question"></i> -->
             <h3 class="item">Rechercher un restaurant</h3>
         </div>
         <el-input type="text" 

@@ -5,7 +5,7 @@
 
             <el-row>
                 <div class="item-container">
-                    <i class="item el-icon-tickets"></i>
+                    <!-- <i class="item el-icon-tickets"></i> -->
                     <h3 class="item">Liste des restaurants</h3>
                 </div>
             </el-row>
@@ -105,7 +105,7 @@ export default {
         },
         async onDetailsRestaurantSelected (id) {
             await this.getRestaurantById(id);
-            if(!!this.restaurant) {
+            if(!this.restaurant) {
                 this.toggleOpenDetailsModal();
                 this.getImageCurrentRestaurant(this.restaurant.name);
             }

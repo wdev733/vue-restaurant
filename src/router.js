@@ -1,12 +1,12 @@
 import VueRouter from 'vue-router'
 
 import Restaurants from './containers/Restaurants'
-import HelloWorld from './containers/HelloWorld.vue'
+import AddRestaurant from './containers/AddRestaurant'
 
 const routes = [
     {path:'/', component: Restaurants},
     {path:'/restaurants', component: Restaurants},
-    {path:'/hello', component: HelloWorld},
+    {path:'/add', component: AddRestaurant},
 ]
   
 const router = new VueRouter({
