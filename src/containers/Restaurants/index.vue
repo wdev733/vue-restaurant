@@ -106,7 +106,7 @@ export default {
         },
         async onDetailsRestaurantSelected (id) {
             await this.getRestaurantById(id);
-            if(!this.restaurant) {
+            if(this.restaurant) {
                 this.toggleOpenDetailsModal();
                 this.getImageCurrentRestaurant(this.restaurant.name);
             }
@@ -124,7 +124,6 @@ export default {
                     title: 'Erreur',
                     message: "Echec de la suppréssion du restaurant !",
                 });
-                console.error('[ERROR] deleteRestaurant : ', error);
             }
         },
     }

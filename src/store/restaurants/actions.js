@@ -8,8 +8,19 @@ const actions = {
         const { data, count } = await restaurants.getAll(page, pageSize, restaurantName);
         commit('setRestaurants', {data, count});
     },
-    async getById({ commit }, id) {      
+    async getById({ commit }, id) {
         const { restaurant } = await restaurants.getById(id);
+        if (!restaurant.address) {
+            restaurant.address = {
+                building: '',
+                street: '',
+                zipcode: '',
+                coord: [0, 0],
+            };
+        }
+        if (!restaurant.borough) {
+            restaurant.borough = '';
+        }
         commit('setRestaurant', restaurant);
     },
     async getImageCurrentRestaurant({ commit }, name) {

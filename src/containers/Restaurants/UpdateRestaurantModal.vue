@@ -13,7 +13,7 @@
                                 type="text" 
                                 name="nom" 
                                 required
-                                v-model="restaurant.name" />
+                                :value="restaurant.name" />
                         </label>
                     </el-col>
                     <el-col :span="8">
@@ -23,7 +23,7 @@
                                 type="text" 
                                 name="cuisine" 
                                 required
-                                v-model="restaurant.cuisine" />
+                                :value="restaurant.cuisine" />
                         </label>
                     </el-col>
                     <el-col :span="4">
@@ -55,9 +55,24 @@ export default {
     methods: {
         ...mapActions({
             toggleOpenModal: 'restaurants/toggleOpenUpdateModal',
+            update: 'restaurants/update',
         }),
-        updateRestaurant() {
-            return
+        async updateRestaurant(e) {
+            e.preventDefault();
+            const { _id: id } = this.restaurant;
+            try {
+                const { succes } = await this.update({id, formData: new FormData(e.target)});
+                succes && this.$notify({
+                    title: 'Succés',
+                    message: 'Restaurant modifié !',
+                    type: 'success'
+                });
+            } catch (error) {
+                this.$notify.error({
+                    title: 'Erreur',
+                    message: "Echec de la modification du restaurant !",
+                });
+            }
         },
     }
 }

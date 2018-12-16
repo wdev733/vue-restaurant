@@ -71,7 +71,6 @@ export default {
                     title: 'Erreur',
                     message: "Echec de l'ajout du restaurant !",
                 });
-                console.error('[ERROR] addRestaurant : ', error);
             }
         }
     }

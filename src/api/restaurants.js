@@ -12,7 +12,6 @@ const restaurants = {
             return await response.json();
         } catch(err) {
             console.error('[ERROR] getAll : ', err);
-            return err;
         }
     },
     async getById(id) {
@@ -21,7 +20,6 @@ const restaurants = {
             return await response.json();
         } catch(err) {
             console.error('[ERROR] getById : ', err);
-            return err;
         }
     },
     async create(formData) {
@@ -33,10 +31,9 @@ const restaurants = {
             return await response.json();
         } catch(err) {
             console.error('[ERROR] create : ', err);
-            return err;
         }
     },
-    async update(id, formData) {
+    async update({id, formData}) {
         try {
             const response = await fetch(`${url}/restaurants/${id}`, {
                 method: 'PUT',
@@ -45,7 +42,6 @@ const restaurants = {
             return await response.json();
         } catch(err) {
             console.error('[ERROR] update : ', err);
-            return err;
         }
     },
     async delete(id) {
@@ -56,7 +52,6 @@ const restaurants = {
             return await response.json();
         } catch(err) {
             console.error('[ERROR] delete : ', err);
-            return err;
         }
     }
 }

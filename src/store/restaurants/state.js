@@ -13,7 +13,10 @@ const state = {
             street: '',
             zipcode: '',
             building: '',
-        }
+        },
+        borough: '',
+        restaurant_id: '',
+        _id: '',
     },
     restaurantName: null,
     modals: {
