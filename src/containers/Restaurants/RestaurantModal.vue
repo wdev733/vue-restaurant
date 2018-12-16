@@ -8,7 +8,7 @@
                 <img id="imageRestaurant" :src="image"/>
                 <ul>
                     <li><b>Cuisine : </b>{{restaurant.cuisine}}</li>
-                    <li>
+                    <li v-if="restaurant.address.street">
                         <b>Adresse : </b>
                         <ul>
                             <li><b>Batiment : </b>{{restaurant.address.building}}</li>
@@ -19,7 +19,7 @@
                     </li>
                 </ul>
             </el-row>
-            <MapTool></MapTool>
+            <MapTool v-if="restaurant.address.street">></MapTool>
     </el-dialog>
 </template>
 
