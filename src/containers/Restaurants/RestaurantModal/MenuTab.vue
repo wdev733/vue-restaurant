@@ -5,9 +5,10 @@
                 v-for="(categorie, index) in categories"
                 :key="index" 
                 :label="categorie.strCategory">
-                {{categorie.strCategory}}
+                <b>{{categorie.strCategory}}</b>
                 <el-table
-                    v-if="menus"
+                    v-if="categorySelected"
+                    v-loading="menus.length <= 0"
                     border
                     height="500"
                     :data="menus"
@@ -42,14 +43,15 @@ export default {
         ...mapState({
             categories: state => state.menus.categories.all,
             menus: state => state.menus.all,
+            categorySelected: state => state.menus.categories.selected,
         }),
     },
     mounted() {
-        this.getCategories();
+        this.initMenuTab();
     },
     methods: {
         ...mapActions({
-            getCategories: 'menus/getCategories',
+            initMenuTab: 'menus/initMenuTab',
             getMenubyCategorie: 'menus/getMenubyCategorie',
         }),
         getMenus(e) {

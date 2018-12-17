@@ -10,9 +10,9 @@ const theMealDB = {
             return error;
         }
     },
-    async getMenubyCategorie(menu) {
+    async getMenubyCategorie(category) {
         try {
-            const response = await fetch(`${url}/filter.php?c=${menu}`);
+            const response = await fetch(`${url}/filter.php?c=${category}`);
             return await response.json();
         } catch (error) {
             console.error('[ERROR] getMenubyCategorie : ', error);
