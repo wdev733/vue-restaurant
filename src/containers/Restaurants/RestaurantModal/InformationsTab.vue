@@ -1,5 +1,5 @@
 <template>
-    <div id="informationsRestaurant">
+    <div id="informationsTab">
         <el-row>
             <img id="imageRestaurant" :src="image"/>
             <ul>
