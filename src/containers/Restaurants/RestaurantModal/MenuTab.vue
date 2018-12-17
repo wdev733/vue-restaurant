@@ -18,14 +18,15 @@
                             label="Nom">
                         </el-table-column>
                         <el-table-column
-                            label="Prix">
+                            prop="price"
+                            label="Prix ($)">
                         </el-table-column>
                         <el-table-column
                             fixed="right"
-                            label="Choisir">
+                            label="Ajouter">
                             <template slot-scope="scope">
                                 <el-button  @click="onSelected(scope.row.strMeal)"
-                                            icon="el-icon-circle-check">
+                                            icon="el-icon-circle-plus">
                                 </el-button>
                             </template>
                         </el-table-column>
@@ -39,6 +40,11 @@
 import { mapActions, mapState, } from 'vuex'
 
 export default {
+    data(){
+        return {
+            price: 10,
+        }
+    },
     computed: {
         ...mapState({
             categories: state => state.menus.categories.all,
