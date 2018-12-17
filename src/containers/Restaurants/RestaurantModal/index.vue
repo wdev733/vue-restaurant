@@ -25,7 +25,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
-import MapTool from '../../components/MapTool.vue';
+import MapTool from '../../../components/MapTool.vue';
 
 export default {
     name: 'RestaurantModal',
