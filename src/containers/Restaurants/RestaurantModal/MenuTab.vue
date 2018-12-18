@@ -25,9 +25,12 @@
                             fixed="right"
                             label="Ajouter">
                             <template slot-scope="scope">
-                                <el-button  @click="add(scope.row)"
-                                            icon="el-icon-circle-plus">
-                                </el-button>
+                                <el-input-number 
+                                    size="mini"
+                                    :min="0"
+                                    @change="num => handleCount(num, scope.row)"
+                                    :value="scope.row.count">
+                                </el-input-number>
                             </template>
                         </el-table-column>
                 </el-table>
@@ -40,13 +43,9 @@
 import { mapActions, mapState, } from 'vuex'
 
 export default {
-    data(){
-        return {
-            price: 10,
-        }
-    },
     computed: {
         ...mapState({
+            cart: state => state.cart.all,
             categories: state => state.menus.categories.all,
             menus: state => state.menus.all,
             categorySelected: state => state.menus.categories.selected,
@@ -59,11 +58,14 @@ export default {
         ...mapActions({
             initMenuTab: 'menus/initMenuTab',
             getMenubyCategorie: 'menus/getMenubyCategorie',
-            add: 'cart/add',
+            setCount: 'cart/setCount',
         }),
         getMenus(e) {
             this.getMenubyCategorie(e.label);
         },
+        handleCount(num, menu) {
+            this.setCount({num, menu});
+        }
     }
 }
 </script>

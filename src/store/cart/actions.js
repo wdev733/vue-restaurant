@@ -1,7 +1,7 @@
 const actions = {
-    add({ commit }, menu) {
-        commit('add', menu); 
-    }
+    setCount({ commit }, {num, menu}) {
+        commit('setCount', {num, menu}); 
+    },
 }
 
 export default actions;

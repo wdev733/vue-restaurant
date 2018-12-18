@@ -4,6 +4,7 @@ const mutations = {
     setMenuSelected: (state, payload) => state.selected = payload,
     setMenus: (state, payload) => {
         payload.length > 0 && payload.forEach(element => {
+            element.count = 0;
             element.price = +(Math.random() * (25 - 5) + 5).toFixed(2);
         });
         state.all = payload;
