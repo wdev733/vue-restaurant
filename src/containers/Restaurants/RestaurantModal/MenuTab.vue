@@ -25,7 +25,7 @@
                             fixed="right"
                             label="Ajouter">
                             <template slot-scope="scope">
-                                <el-button  @click="onSelected(scope.row.strMeal)"
+                                <el-button  @click="add(scope.row)"
                                             icon="el-icon-circle-plus">
                                 </el-button>
                             </template>
@@ -59,13 +59,11 @@ export default {
         ...mapActions({
             initMenuTab: 'menus/initMenuTab',
             getMenubyCategorie: 'menus/getMenubyCategorie',
+            add: 'cart/add',
         }),
         getMenus(e) {
             this.getMenubyCategorie(e.label);
         },
-        onSelected(e) {
-            console.log('onSelected : ', e);
-        }
     }
 }
 </script>
