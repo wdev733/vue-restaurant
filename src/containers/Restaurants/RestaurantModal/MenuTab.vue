@@ -57,13 +57,15 @@ export default {
         ...mapActions({
             initMenuTab: 'menus/initMenuTab',
             getMenubyCategorie: 'menus/getMenubyCategorie',
-            setCount: 'cart/setCount',
+            //setCount: 'cart/setCount',
+            addIntoCart: 'cart/addIntoCart',
         }),
         getMenus(e) {
             this.getMenubyCategorie(e.label);
         },
         handleCount(num, menu) {
-            this.setCount({num, menu});
+            //this.setCount({num, menu});
+            this.addIntoCart({num, menu});
         }
     }
 }
