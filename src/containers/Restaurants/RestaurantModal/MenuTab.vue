@@ -22,8 +22,7 @@
                             label="Prix ($)">
                         </el-table-column>
                         <el-table-column
-                            fixed="right"
-                            label="Ajouter">
+                            fixed="right">
                             <template slot-scope="scope">
                                 <el-input-number 
                                     size="mini"
