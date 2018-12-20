@@ -17,7 +17,6 @@ const mutations = {
                 if(restaurant_id === restaurant.restaurant_id && restaurant.products.length > 0) {
                     restaurant.products.forEach(product => {
                         if(+menu.idMeal == +product.idMeal) {
-                            console.log('[MUTATION] menu: ', +menu.idMeal, '/ product: ', +product.idMeal)
                             menu.count = product.count;
                         }
                     })
@@ -27,6 +26,14 @@ const mutations = {
             });
         });
     },
+
+    setCountMenus: (state, { num, menu }) => {
+        state.all.forEach(element => {
+            if(+element.idMeal === +menu.idMeal) {
+                element.count = num
+            }
+        });
+    }
 }
 
 export default mutations;

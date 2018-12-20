@@ -29,6 +29,10 @@ const actions = {
         } = rootState;
         commit('setCountProductsFromMenus', {restaurant_id, cartRestaurants: all});
     },
+
+    setCountMenus({ commit }, { num, menu }) {
+        commit('setCountMenus', { num, menu });
+    },
 }
 
 export default actions;

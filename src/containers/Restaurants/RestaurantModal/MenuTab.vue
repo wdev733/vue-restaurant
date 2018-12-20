@@ -57,19 +57,21 @@ export default {
     watch: {
         restaurant_id: function (value, oldValue) {
             value !== oldValue && this.initMenuTab();
-        }
+        },
     },
     methods: {
         ...mapActions({
             initMenuTab: 'menus/initMenuTab',
             getMenubyCategorie: 'menus/getMenubyCategorie',
-            addIntoCart: 'cart/addIntoCart',
+            changeIntoCart: 'cart/changeIntoCart',
+            setCountMenus: 'menus/setCountMenus',
         }),
         getMenus(e) {
             this.getMenubyCategorie(e.label);
         },
         handleCount(num, menu) {
-            this.addIntoCart({num, menu});
+            this.changeIntoCart({num, menu});
+            this.setCountMenus({num, menu});
         },
     },
 }

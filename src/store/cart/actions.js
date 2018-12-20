@@ -1,5 +1,5 @@
 const actions = {
-  addIntoCart({ commit, rootState }, { num, menu }) {
+  changeIntoCart({ commit, rootState }, { num, menu }) {
     const {
       selected: { restaurant_id, name }
     } = rootState.restaurants;
