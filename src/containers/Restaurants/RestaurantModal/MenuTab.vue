@@ -48,28 +48,31 @@ export default {
             categories: state => state.menus.categories.all,
             menus: state => state.menus.all,
             categorySelected: state => state.menus.categories.selected,
+            restaurant_id: state => state.restaurants.selected.restaurant_id,
         }),
     },
     mounted() {
         this.initMenuTab();
     },
+    watch: {
+        restaurant_id: function (value, oldValue) {
+            value !== oldValue && this.initMenuTab();
+        }
+    },
     methods: {
         ...mapActions({
             initMenuTab: 'menus/initMenuTab',
+            //setCountProductsFromMenus: 'menus/setCountProductsFromMenus',
             getMenubyCategorie: 'menus/getMenubyCategorie',
-            //setCount: 'cart/setCount',
             addIntoCart: 'cart/addIntoCart',
-            getCountProduct: 'cart/getCountProduct',
         }),
         getMenus(e) {
             this.getMenubyCategorie(e.label);
         },
         handleCount(num, menu) {
-            //this.setCount({num, menu});
-            console.log('handleCount')
             this.addIntoCart({num, menu});
-        }
-    }
+        },
+    },
 }
 </script>
 
