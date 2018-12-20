@@ -41,28 +41,6 @@ const mutations = {
       }
     });
   }
-
-  /* setCount: (state, { num, menu: item, restaurantSelected }) => {
-    if (state.all.length > 0) {
-      const existing = state.all.find(menu => +menu.idMeal === +item.idMeal);
-      if (existing) {
-        if (num === 0) {
-          state.all.filter((menu, index) => {
-            return +menu.idMeal === +item.idMeal && state.all.splice(index, 1);
-          });
-        }
-        return (existing.count = num);
-      } else {
-        item.restaurant = restaurantSelected;
-        item.count++;
-        return state.all.push(item);
-      }
-    } else {
-      item.restaurant = restaurantSelected;
-      item.count++;
-      return state.all.push(item);
-    }
-  } */
 };
 
 export default mutations;

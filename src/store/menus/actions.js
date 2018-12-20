@@ -8,16 +8,12 @@ const actions = {
         commit('setCategorieSelected', firstCategory);  
         await dispatch('getMenubyCategorie', firstCategory);
     },
+    
     async getCategories({ commit }) {        
         const { categories } = await theMealDB.getCategories();
         commit('setCategories', categories);
     },
-    /* async getMenubyCategorie({ commit }, category) {  
-        commit('setMenus', []); 
-        commit('setCategorieSelected', category);     
-        const { meals } = await theMealDB.getMenubyCategorie(category);
-        commit('setMenus', meals);
-    }, */
+
     async getMenubyCategorie({ commit, dispatch }, category) {  
         commit('setMenus', []); 
         commit('setCategorieSelected', category);     

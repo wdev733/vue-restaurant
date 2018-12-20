@@ -62,7 +62,6 @@ export default {
     methods: {
         ...mapActions({
             initMenuTab: 'menus/initMenuTab',
-            //setCountProductsFromMenus: 'menus/setCountProductsFromMenus',
             getMenubyCategorie: 'menus/getMenubyCategorie',
             addIntoCart: 'cart/addIntoCart',
         }),
