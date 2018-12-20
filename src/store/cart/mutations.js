@@ -2,6 +2,7 @@ const mutations = {
   setAll: (state, payload) => (state.all = payload),
 
   setRestaurantCart: (state, payload) => {
+    console.log("setRestaurantCart: ", payload);
     if (state.all.length > 0) {
       const existing = state.all.find(
         restaurant => +restaurant.restaurant_id === +payload.restaurant_id

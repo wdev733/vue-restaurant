@@ -59,12 +59,14 @@ export default {
             getMenubyCategorie: 'menus/getMenubyCategorie',
             //setCount: 'cart/setCount',
             addIntoCart: 'cart/addIntoCart',
+            getCountProduct: 'cart/getCountProduct',
         }),
         getMenus(e) {
             this.getMenubyCategorie(e.label);
         },
         handleCount(num, menu) {
             //this.setCount({num, menu});
+            console.log('handleCount')
             this.addIntoCart({num, menu});
         }
     }
