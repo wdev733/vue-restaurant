@@ -1,15 +1,19 @@
 const mutations = {
   setAll: (state, payload) => (state.all = payload),
 
-  setRestaurantCart: (state, payload) => {
+  setRestaurantCart: (state, {num, restaurantSelected}) => {
     if (state.all.length > 0) {
       const existing = state.all.find(
-        restaurant => +restaurant.restaurant_id === +payload.restaurant_id
+        restaurant => +restaurant.restaurant_id === +restaurantSelected.restaurant_id
       );
 
-      !existing && state.all.push(payload);
+      if(existing && existing.products.length <= 1 && num == 0) {
+        state.all.splice(0, 1)
+      }
+      
+      !existing && state.all.push(restaurantSelected);
     } else {
-      state.all.push(payload);
+      state.all.push(restaurantSelected);
     }
   },
 
