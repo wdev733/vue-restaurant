@@ -5,34 +5,41 @@
             <h3 class="item">Commande</h3>
 
             <el-row>
-                <template>
-                    <el-table
-                        border
-                        height="500"
-                        :data="cart"
-                        style="width: 100%">
-                            <el-table-column
-                                prop="strMeal"
-                                label="Produit">
-                            </el-table-column>
-                            <el-table-column
-                                prop="price"
-                                label="Prix ($)">
-                            </el-table-column>
-                            <el-table-column
-                                fixed="right">
-                                <template slot-scope="scope">
-                                    <el-input-number 
-                                        size="mini"
-                                        :min="0"
-                                        @change="num => handleCount(num, scope.row)"
-                                        :value="scope.row.count">
-                                    </el-input-number>
-                                </template>
-                            </el-table-column>
-                    </el-table>
-                </template>
+                <!-- <template v-for="(restaurant, index) in cart">
+                </template> -->
+
+                <el-table
+                    border
+                    height="500"
+                    :data="cart"
+                    style="width: 100%">
+                    <el-table-column
+                        prop="name"
+                        label="Restaurant(s)">
+                    </el-table-column>
+                    <el-table-column
+                        prop="products"
+                        label="Plat(s)">
+                        <template slot-scope="scope">
+                            <el-table :data="scope.row.products">
+                                <el-table-column 
+                                    label="Nom"
+                                    prop="strMeal">
+                                </el-table-column>
+                                <el-table-column 
+                                    label="Quantité"
+                                    prop="count">
+                                </el-table-column>
+                                <el-table-column 
+                                    label="Prix ($)"
+                                    prop="price">
+                                </el-table-column>
+                            </el-table>
+                        </template>
+                    </el-table-column>
+                </el-table>
             </el-row>
+        
         </div>
     </el-row>
 </template>
@@ -45,6 +52,9 @@ export default {
         ...mapState({
             cart: state => state.cart.all,
         }),
+    },
+    mounted() {
+        console.log('cart: ', this.cart)
     },
     methods: {
         ...mapActions({
