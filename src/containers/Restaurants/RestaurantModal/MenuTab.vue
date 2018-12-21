@@ -22,8 +22,7 @@
                             label="Prix ($)">
                         </el-table-column>
                         <el-table-column
-                            fixed="right"
-                            label="Ajouter">
+                            fixed="right">
                             <template slot-scope="scope">
                                 <el-input-number 
                                     size="mini"
@@ -49,24 +48,32 @@ export default {
             categories: state => state.menus.categories.all,
             menus: state => state.menus.all,
             categorySelected: state => state.menus.categories.selected,
+            restaurant_id: state => state.restaurants.selected.restaurant_id,
         }),
     },
     mounted() {
         this.initMenuTab();
     },
+    watch: {
+        restaurant_id: function (value, oldValue) {
+            value !== oldValue && this.initMenuTab();
+        },
+    },
     methods: {
         ...mapActions({
             initMenuTab: 'menus/initMenuTab',
             getMenubyCategorie: 'menus/getMenubyCategorie',
-            setCount: 'cart/setCount',
+            changeIntoCart: 'cart/changeIntoCart',
+            setCountMenus: 'menus/setCountMenus',
         }),
         getMenus(e) {
             this.getMenubyCategorie(e.label);
         },
         handleCount(num, menu) {
-            this.setCount({num, menu});
-        }
-    }
+            this.changeIntoCart({num, menu});
+            this.setCountMenus({num, menu});
+        },
+    },
 }
 </script>
 
