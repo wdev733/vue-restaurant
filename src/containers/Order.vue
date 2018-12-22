@@ -5,6 +5,7 @@
       <h3 class="item">Commande</h3>
 
       <el-row>
+<<<<<<< HEAD
         <el-table border :data="cart" style="width: 100%">
           <el-table-column prop="name" label="Restaurant(s)" width="300">
             <template slot-scope="scope">
@@ -29,6 +30,24 @@
           TOTAL:
           <b>{{total()}}</b>
         </el-tag>
+=======
+        <template>
+          <el-table border height="500" :data="cart" style="width: 100%">
+            <el-table-column prop="strMeal" label="Produit"></el-table-column>
+            <el-table-column prop="price" label="Prix ($)"></el-table-column>
+            <el-table-column fixed="right">
+              <template slot-scope="scope">
+                <el-input-number
+                  size="mini"
+                  :min="0"
+                  @change="num => handleCount(num, scope.row)"
+                  :value="scope.row.count"
+                ></el-input-number>
+              </template>
+            </el-table-column>
+          </el-table>
+        </template>
+>>>>>>> remove + when compare id
       </el-row>
     </div>
   </el-row>
@@ -40,12 +59,17 @@ import { mapActions, mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
+<<<<<<< HEAD
       cart: state => state.cart.all,
       restaurant: state => state.restaurants.selected
+=======
+      cart: state => state.cart.all
+>>>>>>> remove + when compare id
     })
   },
   methods: {
     ...mapActions({
+<<<<<<< HEAD
       setCount: "cart/setCount",
       getRestaurantById: "restaurants/getById",
       toggleOpenDetailsModal: "restaurants/toggleOpenDetailsModal",
@@ -73,6 +97,12 @@ export default {
         this.toggleOpenDetailsModal();
         this.getImageCurrentRestaurant(this.restaurant.name);
       }
+=======
+      setCount: "cart/setCount"
+    }),
+    handleCount(num, menu) {
+      this.setCount({ num, menu });
+>>>>>>> remove + when compare id
     }
   }
 };

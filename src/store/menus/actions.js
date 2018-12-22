@@ -1,38 +1,42 @@
-import theMealDB from '../../api/theMealDB'
+import theMealDB from "../../api/theMealDB";
 
 const actions = {
-    async initMenuTab({ commit, dispatch, state }) {
-        await dispatch('getCategories');
-        const { categories: { all } } = state;
-        const firstCategory = all[0].strCategory;
-        commit('setCategorieSelected', firstCategory);  
-        await dispatch('getMenubyCategorie', firstCategory);
-    },
-    
-    async getCategories({ commit }) {        
-        const { categories } = await theMealDB.getCategories();
-        commit('setCategories', categories);
-    },
+  async initMenuTab({ commit, dispatch, state }) {
+    await dispatch("getCategories");
+    const {
+      categories: { all }
+    } = state;
+    const firstCategory = all[0].strCategory;
+    commit("setCategorieSelected", firstCategory);
+    await dispatch("getMenubyCategorie", firstCategory);
+  },
 
-    async getMenubyCategorie({ commit, dispatch }, category) {  
-        commit('setMenus', []); 
-        commit('setCategorieSelected', category);     
-        const { meals } = await theMealDB.getMenubyCategorie(category);
-        commit('setMenus', meals);
-        dispatch('setCountProductsFromMenus');
-    },
+  async getCategories({ commit }) {
+    const { categories } = await theMealDB.getCategories();
+    commit("setCategories", categories);
+  },
 
-    setCountProductsFromMenus({ commit, rootState }) {  
-        const { 
-            cart: { all },
-            restaurants: { selected: { restaurant_id } } 
-        } = rootState;
-        commit('setCountProductsFromMenus', {restaurant_id, cartRestaurants: all});
-    },
+  async getMenubyCategorie({ commit, dispatch }, category) {
+    commit("setMenus", []);
+    commit("setCategorieSelected", category);
+    const { meals } = await theMealDB.getMenubyCategorie(category);
+    commit("setMenus", meals);
+    dispatch("setCountProductsFromMenus");
+  },
 
-    setCountMenus({ commit }, { num, menu }) {
-        commit('setCountMenus', { num, menu });
-    },
-}
+  setCountProductsFromMenus({ commit, rootState }) {
+    const {
+      cart: { all },
+      restaurants: {
+        selected: { _id }
+      }
+    } = rootState;
+    commit("setCountProductsFromMenus", { _id, cartRestaurants: all });
+  },
+
+  setCountMenus({ commit }, { num, menu }) {
+    commit("setCountMenus", { num, menu });
+  }
+};
 
 export default actions;
