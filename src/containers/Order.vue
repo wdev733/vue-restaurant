@@ -1,7 +1,6 @@
 <template>
   <el-row id="order" :gutter="20">
     <div class="item-container">
-      <!-- <i class="item el-icon-circle-plus"></i> -->
       <h3 class="item">Commande</h3>
 
       <el-row>
