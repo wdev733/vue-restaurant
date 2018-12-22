@@ -38,9 +38,6 @@ export default {
       cart: state => state.cart.all
     })
   },
-  mounted() {
-    console.log("cart: ", this.cart);
-  },
   methods: {
     ...mapActions({
       setCount: "cart/setCount"
