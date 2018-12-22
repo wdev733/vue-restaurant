@@ -6,7 +6,12 @@
 
       <el-row>
         <el-table border :data="cart" style="width: 100%">
-          <el-table-column prop="name" label="Restaurant(s)" width="300"></el-table-column>
+          <el-table-column prop="name" label="Restaurant(s)" width="300">
+            <template slot-scope="scope">
+              <el-button @click="onDetailsRestaurantSelected(scope.row._id)" icon="el-icon-info"></el-button>
+              {{scope.row.name}}
+            </template>
+          </el-table-column>
           <el-table-column prop="products" label="Plat(s)">
             <template slot-scope="scope">
               <el-table :data="scope.row.products">
@@ -35,12 +40,16 @@ import { mapActions, mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
-      cart: state => state.cart.all
+      cart: state => state.cart.all,
+      restaurant: state => state.restaurants.selected
     })
   },
   methods: {
     ...mapActions({
-      setCount: "cart/setCount"
+      setCount: "cart/setCount",
+      getRestaurantById: "restaurants/getById",
+      toggleOpenDetailsModal: "restaurants/toggleOpenDetailsModal",
+      getImageCurrentRestaurant: "restaurants/getImageCurrentRestaurant"
     }),
     handleCount(num, menu) {
       this.setCount({ num, menu });
@@ -57,6 +66,13 @@ export default {
         });
       });
       return `${result} $`;
+    },
+    async onDetailsRestaurantSelected(id) {
+      await this.getRestaurantById(id);
+      if (this.restaurant) {
+        this.toggleOpenDetailsModal();
+        this.getImageCurrentRestaurant(this.restaurant.name);
+      }
     }
   }
 };
