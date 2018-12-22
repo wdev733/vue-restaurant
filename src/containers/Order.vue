@@ -39,17 +39,12 @@ import { mapActions, mapState } from "vuex";
 export default {
   computed: {
     ...mapState({
-<<<<<<< HEAD
       cart: state => state.cart.all,
       restaurant: state => state.restaurants.selected
-=======
-      cart: state => state.cart.all
->>>>>>> remove + when compare id
     })
   },
   methods: {
     ...mapActions({
-<<<<<<< HEAD
       setCount: "cart/setCount",
       getRestaurantById: "restaurants/getById",
       toggleOpenDetailsModal: "restaurants/toggleOpenDetailsModal",
@@ -77,12 +72,6 @@ export default {
         this.toggleOpenDetailsModal();
         this.getImageCurrentRestaurant(this.restaurant.name);
       }
-=======
-      setCount: "cart/setCount"
-    }),
-    handleCount(num, menu) {
-      this.setCount({ num, menu });
->>>>>>> remove + when compare id
     }
   }
 };
