@@ -5,9 +5,9 @@ const actions = {
     } = rootState.restaurants;
     const restaurantSelected = { restaurant_id, name, products: [] };
 
-    commit("setRestaurantCart", {num, restaurantSelected});
+    commit("setRestaurantCart", { num, restaurantSelected });
     commit("setCountCart", { num, menu, restaurant_id });
-  },
+  }
 };
 
 export default actions;
