@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 import Navigation from "./containers/Navigation";
 import RestaurantModal from "./containers/RestaurantModal";
 
@@ -17,6 +19,14 @@ export default {
   components: {
     Navigation,
     RestaurantModal
+  },
+  mounted() {
+    this.initCartLocalStorage();
+  },
+  methods: {
+    ...mapActions({
+      initCartLocalStorage: "cart/initLocalStorage"
+    })
   }
 };
 </script>
