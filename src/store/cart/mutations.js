@@ -3,12 +3,18 @@ const mutations = {
 
   setRestaurantCart: (state, { num, restaurantSelected }) => {
     if (state.all.length > 0) {
-      const existing = state.all.find(
-        restaurant => restaurant._id === restaurantSelected._id
-      );
+      let existing = null;
+      let index = null;
 
-      if (existing && existing.products.length <= 1 && num == 0) {
-        state.all.splice(0, 1);
+      state.all.forEach((restaurant, i) => {
+        if (restaurant._id === restaurantSelected._id) {
+          existing = restaurant;
+          index = i;
+        }
+      });
+
+      if (existing && existing.products.length == 1 && num == 0) {
+        state.all.splice(index, 1);
       }
       !existing && state.all.push(restaurantSelected);
     } else {
@@ -24,15 +30,15 @@ const mutations = {
             menu => menu.idMeal === item.idMeal
           );
           if (existing) {
-            if (num === 0) {
-              restaurant.products.filter((menu, index) => {
-                return (
-                  menu.idMeal === item.idMeal &&
-                  restaurant.products.splice(index, 1)
-                );
-              });
-            }
-            return (existing.count = num);
+            restaurant.products.forEach((menu, index) => {
+              if (menu.idMeal === item.idMeal) {
+                if (num === 0) {
+                  restaurant.products.splice(index, 1);
+                } else {
+                  menu.count = num;
+                }
+              }
+            });
           } else {
             item.count++;
             return restaurant.products.push(item);

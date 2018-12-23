@@ -55,7 +55,7 @@ export default {
     },
     priceMultiple(product) {
       const { count, price } = product;
-      return count * price;
+      return +(count * price).toFixed(2);
     },
     total() {
       let result = 0;
@@ -64,7 +64,7 @@ export default {
           result += this.priceMultiple(product);
         });
       });
-      return `${result} $`;
+      return `${result.toFixed(2)} $`;
     },
     async onDetailsRestaurantSelected(id) {
       await this.getRestaurantById(id);
