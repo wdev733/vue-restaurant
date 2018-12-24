@@ -39,7 +39,6 @@ import { mapState, mapGetters } from "vuex";
 import MapTool from "../../components/MapTool.vue";
 
 export default {
-  name: "RestaurantModal",
   computed: {
     ...mapState({
       image: state => state.restaurants.imageCurrentRestaurant
