@@ -16,7 +16,6 @@ const qwant = {
       );
       return await response.json();
     } catch (err) {
-      console.error("[ERROR] image : ", err);
       return err;
     }
   }

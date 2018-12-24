@@ -37,6 +37,7 @@
 import { mapActions, mapState } from "vuex";
 
 export default {
+  name: "app-menu-restaurant",
   computed: {
     ...mapState({
       cart: state => state.cart.all,
