@@ -11,7 +11,7 @@ const actions = {
 };
 
 const state = {
-  all: [],
+  all: [{test: 'aaa'}],
 };
 
 
