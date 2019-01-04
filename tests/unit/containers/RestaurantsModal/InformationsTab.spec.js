@@ -4,8 +4,8 @@ import Vue from 'vue'
 import Element from 'element-ui'
 import InformationTab from '../../../../src/containers/RestaurantModal/InformationsTab.vue';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import restaurants from '../../../mock/store/restaurants/index';
 import locale from 'element-ui/lib/locale/lang/fr'
+import fakeStore from '../../../mock/store/index';
 
 Vue.use(Element, { locale })
 
@@ -18,15 +18,7 @@ describe('InformationTab', () => {
     let store;
 
     beforeEach(() => {
-        store = new Vuex.Store({
-            modules: {
-                restaurants: {
-                    namespaced: true,
-                    state: restaurants.state,
-                    getters: restaurants.getters
-              }
-            }
-          })
+        store = fakeStore.store;
 
         wrapper = shallowMount(InformationTab, {
             store: store,
@@ -35,6 +27,10 @@ describe('InformationTab', () => {
     });
 
     test('It should call restaurant selected getter.', () => {
-        expect(restaurants.getters.restaurantSelected).toHaveBeenCalled();
+        expect(fakeStore.mock.restaurants.getters.restaurantSelected).toHaveBeenCalled();
+      });
+
+      test('Restaurant image should not be null', () => {
+        expect(wrapper.vm._computedWatchers.image.value).toBe('test');
       });
 })
