@@ -37,4 +37,8 @@ describe('InformationTab', () => {
     test('It should call restaurant selected getter.', () => {
         expect(restaurants.getters.restaurantSelected).toHaveBeenCalled();
       });
+
+      test('Restaurant image should not be null', () => {
+        expect(restaurants.state.imageCurrentRestaurant).toBeDefined();
+      });
 })

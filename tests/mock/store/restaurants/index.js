@@ -23,7 +23,7 @@ const state = {
         openDetailsModal: false,
         openUpdateModal: false,
     },
-    imageCurrentRestaurant: null,
+    imageCurrentRestaurant: 'test',
 }
 
 const getters = {
