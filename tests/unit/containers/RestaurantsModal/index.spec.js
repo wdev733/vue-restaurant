@@ -13,7 +13,7 @@ const localVue = createLocalVue();
 
 localVue.use(Vuex);
 
-describe('InformationTab', () => {
+describe('Index', () => {
   let wrapper;
   let store;
 
