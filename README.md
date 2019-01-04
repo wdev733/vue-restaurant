@@ -1,5 +1,7 @@
 # TP3 - Vue.js - M1 MIAGE - Restaurant
 
+[Consignes (Cliquer)](http://miageprojet2.unice.fr/Intranet_de_Michel_Buffa/Master_1_Miage_2018-2019)
+
 ## Membres du projet :
 
 - Romain LEMBO
