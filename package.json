@@ -7,8 +7,10 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "test:clear": "node node_modules/.bin/jest --clearCache",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "npm run test:clear && vue-cli-service test:unit",
+    "test:unit:watch": "npm run test:clear && vue-cli-service test:unit --watch"
   },
   "dependencies": {
     "element-ui": "^2.4.5",
