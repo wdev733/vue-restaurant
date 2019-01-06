@@ -1,4 +1,4 @@
 jobs:
   include:
     - stage: test
-      script: npm install && npm run test
+      script: npm install && npm run test:unit
