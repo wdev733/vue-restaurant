@@ -8,7 +8,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "jest"
+    "test": "jest",
+    "test:clear": "node node_modules/.bin/jest --clearCache",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "npm run test:clear && vue-cli-service test:unit",
+    "test:unit:watch": "npm run test:clear && vue-cli-service test:unit --watch"
   },
   "dependencies": {
     "element-ui": "^2.4.5",
@@ -31,7 +35,18 @@
     "eslint-plugin-vue": "^5.0.0-0",
     "jest": "^23.6.0",
     "vue-cli-plugin-element": "^1.0.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "jest-transform-stub": "^1.0.0",
+    "jest-vue-preprocessor": "^1.4.0",
+    "jsdom": "^13.1.0",
+    "vue-server-renderer": "^2.5.21",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.2.0",
+    "@vue/cli-plugin-unit-jest": "^3.2.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-core": "7.0.0-bridge.0"
   },
   "eslintConfig": {
     "root": true,
