@@ -12,6 +12,14 @@
 ```
 npm install
 npm run start
+
+### Run your tests unitaires
+```
+npm run test:unit
+```
+### Run your tests e2e
+```
+npm run test:e2e
 ```
 
 ## Spécifications :
