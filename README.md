@@ -31,3 +31,4 @@ npm run test:e2e
 - Librairie graphique avec Element-UI.
 - Images de restaurants provenant de l'API du moteur de recherche Qwant.
 - Faux menus provenant de l'API theMealDB.
+- Local Storage du panier
