@@ -39,7 +39,7 @@
     "babel-jest": "^23.6.0",
     "jest-transform-stub": "^1.0.0",
     "jest-vue-preprocessor": "^1.4.0",
-    "jsdom": "^13.1.0",
+    "jsdom": "^16.5.0",
     "vue-server-renderer": "^2.5.21",
     "@vue/cli-plugin-e2e-nightwatch": "^3.2.0",
     "@vue/cli-plugin-unit-jest": "^3.2.0",
